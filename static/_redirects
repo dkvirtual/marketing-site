@@ -1,0 +1,5 @@
+# Redirect root to English
+/ /en/ 301
+
+# Redirect any root-level pages to English equivalent
+/* /en/:splat 301

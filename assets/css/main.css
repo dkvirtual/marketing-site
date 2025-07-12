@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+
+@theme {
+    --color-primary: #04245C;
+    --color-secondary: #ffad00;
+}

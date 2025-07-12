@@ -1,0 +1,62 @@
+baseURL = "https://dkvirtual.com"
+title = "Deutsche Kraniche Virtual"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+
+[languages]
+  [languages.en]
+    languageCode = "en-US"
+    languageName = "English"
+    weight = 1
+    contentDir = "content/en"
+    
+  [languages.de]
+    languageCode = "de-DE"
+    languageName = "Deutsch"
+    weight = 2
+    contentDir = "content/de"
+    
+  [languages.fr]
+    languageCode = "fr-FR"
+    languageName = "Français"
+    weight = 3
+    contentDir = "content/fr"
+    
+  [languages.it]
+    languageCode = "it-IT"
+    languageName = "Italiano"
+    weight = 4
+    contentDir = "content/it"
+    
+  [languages.nl]
+    languageCode = "nl-NL"
+    languageName = "Nederlands"
+    weight = 5
+    contentDir = "content/nl"
+
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+
+[params]
+    description = "Marketing Site for Deutsche Kraniche Virtual"
+
+[build]
+    [build.buildStats]
+      enable = true
+    [[build.cachebusters]]
+      source = 'assets/notwatching/hugo_stats\.json'
+      target = 'css'
+    [[build.cachebusters]]
+      source = '(postcss|tailwind)\.config\.js'
+      target = 'css'
+
+[module]
+    [[module.mounts]]
+        source = 'assets'
+        target = 'assets'
+    [[module.mounts]]
+        disableWatch = true
+        source = 'hugo_stats.json'
+        target = 'assets/notwatching/hugo_stats.json'

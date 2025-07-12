@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="relative overflow-hidden bg-gray-100 min-h-screen flex flex-col">
+    {{- partial "header.html" . -}}
+
+    <main class="mx-auto mb-auto max-w-7xl px-4 sm:mt-24">
+        <div class="sm:-mt-16">
+            <div class="py-12 overflow-hidden lg:py-12">
+                <div class="relative">
+                    <h2 class="text-center text-3xl leading-8 font-extrabold tracking-tight text-primary sm:text-4xl">
+                        {{ .Params.airlines_title }}
+                    </h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
+                        {{ .Params.airlines_headline }}
+                    </p>
+                </div>
+            </div>
+
+            {{ $airlines := slice
+                (dict "name" "Air Dolomiti" "image" "/images/air-dolomiti-banner.webp")
+                (dict "name" "Austrian Airlines" "image" "/images/austrian-airlines-banner.webp")
+                (dict "name" "Brussels Airlines" "image" "/images/brussels-airlines-banner.webp")
+                (dict "name" "Edelweiss Air" "image" "/images/edelweiss-banner.webp")
+                (dict "name" "Eurowings Airlines" "image" "/images/eurowings-banner.webp")
+                (dict "name" "Lufthansa" "image" "/images/lufthansa-banner.webp")
+                (dict "name" "Lufthansa Cargo" "image" "/images/lufthansa-cargo-banner.webp")
+                (dict "name" "Lufthansa City Airlines" "image" "/images/lufthansa-city-airlines-banner.webp")
+                (dict "name" "Lufthansa CityLine" "image" "/images/lufthansa-cityline-banner.webp")
+                (dict "name" "Swiss International Air Lines" "image" "/images/swiss-banner.webp")
+            }}
+
+            <ul role="list" class="mt-6 mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+                {{ range $airlines }}
+                <li class="col-span-1 flex flex-col text-center bg-white rounded-sm shadow divide-y divide-gray-200">
+                    <div class="flex-1 flex flex-col">
+                        <img class="w-auto h-auto flex-shrink-0 mx-auto rounded-sm"
+                             src="{{ .image }}" alt="{{ .name }}">
+                        <h3 class="mt-2 mb-2 text-gray-900 text-xl font-medium">{{ .name }}</h3>
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+    </main>
+
+    {{- partial "footer.html" . -}}
+</div>
+{{ end }}

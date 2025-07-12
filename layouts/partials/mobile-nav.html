@@ -1,0 +1,47 @@
+<div x-show="open"
+     x-transition:enter="transition ease-out duration-150"
+     x-transition:enter-start="transform opacity-0 scale-95"
+     x-transition:enter-end="transform opacity-100 scale-100"
+     x-transition:leave="transition ease-in duration-75"
+     x-transition:leave-start="transform opacity-100 scale-100"
+     x-transition:leave-end="transform opacity-0 scale-95"
+     class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+    <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+        <div class="px-5 pt-4 flex items-center justify-between">
+            <a href="{{ relLangURL "/" }}">
+                <div class="flex">
+                    <img src="https://brand.dkvirtual.com/logos/standard/color.svg" class="h-8" alt="Deutsche Kraniche Virtual">
+                </div>
+            </a>
+            <div class="-mr-2">
+                <button @click="open = false" type="button"
+                        class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                    <span class="sr-only">{{ T "menu.closemenu" }}</span>
+                    <!-- Heroicon name: outline/x -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="px-2 pt-2 pb-3">
+            <a href="{{ relLangURL "/offering" }}" class="block px-3 py-2 text-base {{ if eq .RelPermalink (printf "/%s/offering/" .Site.Language.Lang) }}text-secondary border-l border-secondary font-semibold{{ else }}font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50{{ end }}">
+                {{ T "menu.offering" }}
+            </a>
+            <a href="{{ relLangURL "/airlines" }}" class="block px-3 py-2 text-base {{ if eq .RelPermalink (printf "/%s/airlines/" .Site.Language.Lang) }}text-secondary border-l border-secondary font-semibold{{ else }}font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50{{ end }}">
+                {{ T "menu.airlines" }}
+            </a>
+            <a href="{{ relLangURL "/faq" }}" class="block px-3 py-2 text-base {{ if eq .RelPermalink (printf "/%s/faq/" .Site.Language.Lang) }}text-secondary border-l border-secondary font-semibold{{ else }}font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50{{ end }}">
+                {{ T "menu.faq" }}
+            </a>
+        </div>
+        <a href="https://join.dkvirtual.com" class="block w-full px-5 py-3 text-center font-medium text-primary bg-gray-50 hover:bg-gray-100">
+            {{ T "menu.join" }}
+        </a>
+        <a href="https://crewnet.dkvirtual.com" class="block w-full px-5 py-3 text-center font-medium text-primary bg-gray-50 hover:bg-gray-100">
+            {{ T "menu.signin" }}
+        </a>
+    </div>
+</div>

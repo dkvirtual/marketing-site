@@ -1,0 +1,118 @@
+<div class="md:flex md:space-x-10 mr-10">
+    <a href="{{ relLangURL "/offering" }}" class="text-base font-semibold {{ if eq .RelPermalink (printf "/%s/offering/" .Site.Language.Lang) }}text-secondary{{ else }}text-gray-300 hover:text-secondary{{ end }}">
+        {{ T "menu.offering" }}
+    </a>
+    <a href="{{ relLangURL "/airlines" }}" class="text-base font-semibold {{ if eq .RelPermalink (printf "/%s/airlines/" .Site.Language.Lang) }}text-secondary{{ else }}text-gray-300 hover:text-secondary{{ end }}">
+        {{ T "menu.airlines" }}
+    </a>
+    <a href="{{ relLangURL "/faq" }}" class="text-base font-semibold {{ if eq .RelPermalink (printf "/%s/faq/" .Site.Language.Lang) }}text-secondary{{ else }}text-gray-300 hover:text-secondary{{ end }}">
+        {{ T "menu.faq" }}
+    </a>
+</div>
+
+<div class="mr-3 relative inline-block text-left" x-data="{ langSwitcherOpen: false }" @click.outside="langSwitcherOpen = false">
+    <button @click="langSwitcherOpen = !langSwitcherOpen" type="button" class="inline-flex items-center gap-x-2 rounded px-2 py-2 font-medium text-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-500 hover:ring-1 hover:ring-gray-500 cursor-pointer">
+        {{ if eq .Site.Language.Lang "de" }}
+            <svg class="h-6 w-6 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="#fc0" d="M0 341.3h512V512H0z"/>
+                <path fill="#000001" d="M0 0h512v170.7H0z"/>
+                <path fill="red" d="M0 170.7h512v170.6H0z"/>
+            </svg>
+        {{ else if eq .Site.Language.Lang "fr" }}
+            <svg class="h-6 w-6 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="#fff" d="M0 0h512v512H0z"/>
+                <path fill="#000091" d="M0 0h170.7v512H0z"/>
+                <path fill="#e1000f" d="M341.3 0H512v512H341.3z"/>
+            </svg>
+        {{ else if eq .Site.Language.Lang "it" }}
+            <svg class="h-6 w-6 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <g fill-rule="evenodd" stroke-width="1pt">
+                    <path fill="#fff" d="M0 0h512v512H0z"/>
+                    <path fill="#009246" d="M0 0h170.7v512H0z"/>
+                    <path fill="#ce2b37" d="M341.3 0H512v512H341.3z"/>
+                </g>
+            </svg>
+        {{ else if eq .Site.Language.Lang "nl" }}
+            <svg class="h-6 w-6 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="#21468b" d="M0 0h512v512H0z"/>
+                <path fill="#fff" d="M0 0h512v341.3H0z"/>
+                <path fill="#ae1c28" d="M0 0h512v170.7H0z"/>
+            </svg>
+        {{ else }}
+            <svg class="h-6 w-6 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="#012169" d="M0 0h512v512H0z"/>
+                <path fill="#FFF" d="M512 0v64L322 256l190 187v69h-67L254 324 68 512H0v-68l186-187L0 74V0h62l192 188L440 0z"/>
+                <path fill="#C8102E" d="m184 324 11 34L42 512H0v-3zm124-12 54 8 150 147v45zM512 0 320 196l-4-44L466 0zM0 1l193 189-59-8L0 49z"/>
+                <path fill="#FFF" d="M176 0v512h160V0zM0 176v160h512V176z"/>
+                <path fill="#C8102E" d="M0 208v96h512v-96zM208 0v512h96V0z"/>
+            </svg>
+        {{ end }}
+    </button>
+    <div x-show="langSwitcherOpen"
+         x-transition:enter="transition ease-out duration-150"
+         x-transition:enter-start="transform opacity-0 scale-95"
+         x-transition:enter-end="transform opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-75"
+         x-transition:leave-start="transform opacity-100 scale-100"
+         x-transition:leave-end="transform opacity-0 scale-95"
+         style="display: none;"
+         class="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div class="py-1 grid grid-cols-1 gap-2">
+            {{ range .AllTranslations }}
+                {{ if ne .Language.Lang $.Site.Language.Lang }}
+            <a href="{{ .RelPermalink }}" class="text-gray-700 px-4 py-2 text-sm text-start items-center inline-flex hover:bg-gray-100">
+                {{ if eq .Language.Lang "de" }}
+                <svg class="h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+                    <path fill="#fc0" d="M0 320h640v160H0z"/>
+                    <path fill="#000001" d="M0 0h640v160H0z"/>
+                    <path fill="red" d="M0 160h640v160H0z"/>
+                </svg>
+                Deutsch
+                {{ else if eq .Language.Lang "en" }}
+                <svg class="h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+                    <path fill="#012169" d="M0 0h640v480H0z"/>
+                    <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z"/>
+                    <path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z"/>
+                    <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z"/>
+                    <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z"/>
+                </svg>
+                English
+                {{ else if eq .Language.Lang "fr" }}
+                <svg class="h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+                    <path fill="#fff" d="M0 0h640v480H0z"/>
+                    <path fill="#000091" d="M0 0h213.3v480H0z"/>
+                    <path fill="#e1000f" d="M426.7 0H640v480H426.7z"/>
+                </svg>
+                Français
+                {{ else if eq .Language.Lang "it" }}
+                <svg class="h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+                    <g fill-rule="evenodd" stroke-width="1pt">
+                        <path fill="#fff" d="M0 0h640v480H0z"/>
+                        <path fill="#009246" d="M0 0h213.3v480H0z"/>
+                        <path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/>
+                    </g>
+                </svg>
+                Italiano
+                {{ else if eq .Language.Lang "nl" }}
+                <svg class="h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+                    <path fill="#21468b" d="M0 0h640v480H0z"/>
+                    <path fill="#fff" d="M0 0h640v320H0z"/>
+                    <path fill="#ae1c28" d="M0 0h640v160H0z"/>
+                </svg>
+                Nederlands
+                {{ end }}
+            </a>
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+<span class="inline-flex rounded-md shadow">
+    <a href="https://join.dkvirtual.com" class="inline-flex items-center px-4 py-2 bg-secondary hover:bg-secondary/80 focus:ring-secondary/80 text-primary font-semibold rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">
+        {{ T "menu.join" }}
+    </a>
+    <a href="https://crewnet.dkvirtual.com" class="ml-3 inline-flex items-center px-4 py-2 text-primary focus:ring-primary/80 focus:border-primary/80 border border-gray-300 bg-white hover:bg-gray-100 font-semibold rounded shadow-sm focus:outline-none focus:ring-1">
+        {{ T "menu.signin" }}
+    </a>
+</span>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" class="h-full">
+<head>
+    {{- partial "head.html" . -}}
+</head>
+<body class="font-sans text-sm antialiased">
+    {{- block "main" . }}{{- end }}
+    
+    <!-- Scripts -->
+    {{ partial "js.html" . }}
+</body>
+</html>
